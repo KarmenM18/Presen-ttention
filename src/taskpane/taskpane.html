@@ -3,13 +3,41 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>PowerPoint Add-In</title>
     <link rel="stylesheet" type="text/css" href="taskpane.css" />
 
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+
+    <!--Display webcam feed-->
+    <video id="webcam" autoplay playsinline width="640" height="480"></video>
+
+    <canvas id="canvas" class="d-none"></canvas>
+
+    <!-- Is this needed? -->
+    <script src="webcam-easy/dist/webcam-easy.js"></script>
+    <script src="webcam-easy/dist/webcam-easy.min.js"></script>
+
+    <!--Play sound when picture is taken-->
+    <audio id="snapSound" src="audio/snap.wav" preload="auto"></audio>
+
+    <!-- Include the webcam-easy library -->
+    <script src="node_modules/webcam-easy/src/webcam-easy.js"></script>
+
+    <!-- Your JavaScript code can now use the Webcam class globally -->
+    <!-- <script>
+        // Initialize the webcam
+        const webcamElement = document.getElementById('webcam-container');
+        const webcam = new Webcam(webcamElement);
+
+        // Use the webcam instance as needed
+        webcam.start();
+    </script> -->
+
 </head>
+
 <body>
     <div id="app-container">
         <div id="header">
@@ -24,6 +52,11 @@
         </div>
     </div>
     <script type="text/javascript" src="taskpane.js"></script>
-</body>
-</html>
 
+    <h1>Webcam Picture Taker</h1>
+    <button id="takePicture">Take Picture</button>
+    <!--Capture image, which is initially hidden-->
+    <img id="capturedImage" style="display: none;">
+</body>
+
+</html>
