@@ -5,13 +5,13 @@
 
 // global document, Office
 
-Office.onReady((info) => {
+/* Office.onReady((info) => {
   if (info.host === Office.HostType.PowerPoint) {
     document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
     //document.getElementById("run").onclick = run;
   }
-});
+}); */
 
 /*
 export async function run() {
@@ -32,7 +32,7 @@ export async function run() {
 //   }
 // });
 
-function onSlideSelectionChanged(eventArgs) {
+/* function onSlideSelectionChanged(eventArgs) {
   var pageNumber = eventArgs.startSlideIndex + 1; // Assuming 1-based indexing
   var timestamp = new Date().toISOString();
   sendDataToServer({ pageNumber, timestamp });
@@ -46,5 +46,63 @@ function sendDataToServer(data) {
           'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
+  });
+} */
+
+var isRecording = false;
+
+Office.onReady(function (info) {
+  if (info.host === Office.HostType.PowerPoint) {
+      Office.context.presentation.addHandlerAsync(
+          Office.EventType.SlideSelectionChanged,
+          onSlideSelectionChanged,
+          function (result) {
+              if (result.status === Office.AsyncResultStatus.Failed) {
+                  console.error('Error adding event handler:', result.error.message);
+              }
+          }
+      );
+
+      initialize();
+  }
+});
+
+function initialize() {
+  document.getElementById("startRecording").addEventListener("click", function() {
+      toggleRecording(); // Function to toggle recording status
+  });
+}
+
+function onSlideSelectionChanged(eventArgs) {
+  if (isRecording) {
+      var selectedSlideIndex = eventArgs.startSlideIndex + 1;
+      var timestamp = new Date().toISOString();
+      sendDataToServer({ slideIndex: selectedSlideIndex, timestamp: timestamp });
+  }
+}
+
+function toggleRecording() {
+  isRecording = !isRecording;
+  var startRecordingButton = document.getElementById("startRecording");
+  startRecordingButton.innerText = isRecording ? "Stop Recording" : "Start Recording";
+}
+
+function sendDataToServer(data) {
+
+  fetch('http://localhost:5000', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+  }).then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+      return response.json();
+  }).then(result => {
+      console.log('Server response:', result);
+  }).catch(error => {
+      console.error('Error sending data to the server:', error);
   });
 }
