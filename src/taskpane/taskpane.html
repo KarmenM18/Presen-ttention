@@ -11,24 +11,6 @@
     <!-- Office JavaScript API -->
     <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
 
-    <!--Display webcam feed-->
-    <video id="webcam" autoplay playsinline width="640" height="480"></video>
-
-    <canvas id="canvas" class="d-none"></canvas>
-
-    <!--Play sound when picture is taken-->
-    <audio id="snapSound" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/John_F_Kennedy_Address_on_the_Buildup_of_Arms_in_Cuba.ogg" preload="auto"></audio>
-
-    <!-- Your JavaScript code can now use the Webcam class globally -->
-    <!-- <script>
-        // Initialize the webcam
-        const webcamElement = document.getElementById('webcam-container');
-        const webcam = new Webcam(webcamElement);
-
-        // Use the webcam instance as needed
-        webcam.start();
-    </script> -->
-
 </head>
 
 <body>
@@ -45,11 +27,6 @@
         </div>
     </div>
     <script type="text/javascript" src="taskpane.js"></script>
-
-    <h1>Webcam Picture Taker</h1>
-    <button id="takePicture">Take Picture</button>
-    <!--Capture image, which is initially hidden-->
-    <img id="capturedImage" style="display: none;">
 </body>
 
 </html>

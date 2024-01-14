@@ -48,20 +48,18 @@ function sendDataToServer(data) {
       body: JSON.stringify(data),
   });
 } */
+import { v4 as uuidv4 } from 'uuid'
+import {send} from "process";
 
-import Webcam from 'webcam-easy';
-
-// Declare constants using webcam-easy library to interact with webcam
-const webcamElement = document.getElementById('webcam');
-const canvasElement = document.getElementById('canvas');
-const snapSoundElement = document.getElementById('snapSound');
-const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
+var currentUUID = ""
+var isRecording = false
+var t = null
 
 Office.onReady(function (info) {
     if (info.host === Office.HostType.PowerPoint) {
         initialize();
-        document.getElementById("takePicture").onclick = function () { // onClick event handler assigned to button, executes picture capture
-            takePictureAndInsert();
+        document.getElementById("startRecording").onclick = function () { // onClick event handler assigned to button, executes picture capture
+            toggleRecording()
         };
     }
 });
@@ -83,8 +81,6 @@ function getSelectedSlideID() {
     })
 }
 
-var isRecording = false;
-
 function initialize() {
     document.getElementById("startRecording").addEventListener("click", async function () {
         var slideNumber = document.getElementById("currentSlide")
@@ -105,13 +101,25 @@ function onSlideSelectionChanged(eventArgs) {
 
 function toggleRecording() {
     isRecording = !isRecording;
+    if (isRecording) {
+        currentUUID = uuidv4()
+        t = setInterval(sendDataToServer, 1000)
+    } else {
+        clearInterval(t)
+    }
     var startRecordingButton = document.getElementById("startRecording");
     startRecordingButton.innerText = isRecording ? "Stop Recording" : "Start Recording";
 }
 
-function sendDataToServer(data) {
+async function sendDataToServer() {
 
-    fetch('http://localhost:5000', {
+    const data = {
+        "uuid": currentUUID,
+        "slide": await getSelectedSlideID(),
+        "timestamp": Date.now()
+    };
+
+    fetch('http://localhost:5000/upload', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -127,45 +135,6 @@ function sendDataToServer(data) {
     }).catch(error => {
         console.error('Error sending data to the server:', error);
     });
-}
-
-/*
-                                            WEBCAM COMPONENT
-*/
-async function takePictureAndInsert() {
-    try {
-
-        // Capture image from webcam
-        const capturedImage = await captureImage();
-
-        // Insert the image path into the presentation
-        insertImageIntoPresentation(capturedImage);
-
-    } catch (error) {
-        console.error('Error capturing image:', error);
-    }
-}
-
-// PURPOSE: Take picture through webcam, stores picture data
-function captureImage() {
-
-    // Initialize the webcam instance (assuming you have the necessary HTML elements)
-    const webcam = new Webcam(document.getElementById('webcam'), 'user', document.getElementById('canvas'), document.getElementById('snapSound'));
-
-    // Engage webcam, take picture 
-    webcam.start()
-        .then(result => {
-            console.log("webcam started");
-        })
-        .catch(err => {
-            console.log(err);
-        });
-
-    // Take photo
-    var picture = webcam.snap();
-    webcam.stop();
-    return picture; // note: in webcam-easy, snap() returns 'data,' which should be a PNG URL
-
 }
 
 // PURPOSE: takes the Image URL obtained from webcam capture, inserts into powerpoint
