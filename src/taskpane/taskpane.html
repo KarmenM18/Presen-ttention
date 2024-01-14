@@ -6,6 +6,9 @@
 <head>
     <title>PowerPoint Add-In</title>
     <link rel="stylesheet" type="text/css" href="taskpane.css" />
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
 </head>
 <body>
     <div id="app-container">
@@ -13,7 +16,7 @@
             <h1>PowerPoint Add-In</h1>
         </div>
         <div id="content">
-            <button id="startRecording" onclick="startRecording()">Start Recording</button>
+            <button id="startRecording">Start Recording</button>
             <div id="slideInfo">
                 <p id="currentSlide">Current Slide: </p>
                 <p id="timestamp">Timestamp: </p>
