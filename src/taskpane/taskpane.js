@@ -3,16 +3,17 @@
  * See LICENSE in the project root for license information.
  */
 
-/* global document, Office 
+// global document, Office
 
 Office.onReady((info) => {
   if (info.host === Office.HostType.PowerPoint) {
     document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
-    document.getElementById("run").onclick = run;
+    //document.getElementById("run").onclick = run;
   }
 });
 
+/*
 export async function run() {
   /**
    * Insert your PowerPoint code here
@@ -23,13 +24,13 @@ export async function run() {
   await Office.context.document.setSelectedDataAsync("Hello World!", options);
 } */
 
-Office.onReady(function (info) {
-  if (info.host === Office.HostType.PowerPoint) {
-      Office.context.presentation.addHandlerAsync(
-          Office.EventType.SlideSelectionChanged
-          ,onSlideSelectionChanged);
-  }
-});
+// Office.onReady(function (info) {
+//   if (info.host === Office.HostType.PowerPoint) {
+//       Office.context.presentation.addHandlerAsync(
+//           Office.EventType.SlideSelectionChanged
+//           ,onSlideSelectionChanged);
+//   }
+// });
 
 function onSlideSelectionChanged(eventArgs) {
   var pageNumber = eventArgs.startSlideIndex + 1; // Assuming 1-based indexing
