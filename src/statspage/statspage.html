@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presenter Statistics</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1> Your Presention Statistics</h1>
+    </header>
+
+    <section id="statistics">
+        <h2>Live Statistics</h2>
+        <p id="slideNumber">Current Slide: <span id="currentSlide">0</span></p>
+        <p id="attention">Audience Attention: <span id="attentionCount">0</span></p>
+    </section>
+
+    <section id="chartContainer">
+        <canvas id="myChart"></canvas>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
