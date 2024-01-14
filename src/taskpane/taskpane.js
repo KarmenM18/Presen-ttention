@@ -83,8 +83,7 @@ function getSelectedSlideID() {
 
 function initialize() {
     document.getElementById("startRecording").addEventListener("click", async function () {
-        var slideNumber = document.getElementById("currentSlide")
-        slideNumber.innerText = "Current slide: " + await getSelectedSlideID()
+
         //toggleRecording(); // Function to toggle recording status
     });
 }
@@ -132,6 +131,8 @@ async function sendDataToServer() {
         return response.json();
     }).then(result => {
         console.log('Server response:', result);
+        var slideNumber = document.getElementById("currentSlide")
+        slideNumber.innerText = JSON.stringify(result)
     }).catch(error => {
         console.error('Error sending data to the server:', error);
     });
