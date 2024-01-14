@@ -49,7 +49,7 @@ function sendDataToServer(data) {
   });
 } */
 
-//import Webcam from 'webcam-easy';
+import Webcam from 'webcam-easy';
 
 // Declare constants using webcam-easy library to interact with webcam
 const webcamElement = document.getElementById('webcam');
@@ -61,7 +61,7 @@ Office.onReady(function (info) {
     if (info.host === Office.HostType.PowerPoint) {
         initialize();
         document.getElementById("takePicture").onclick = function () { // onClick event handler assigned to button, executes picture capture
-            takePicture();
+            takePictureAndInsert();
         };
     }
 });
@@ -139,7 +139,7 @@ async function takePictureAndInsert() {
         const capturedImage = await captureImage();
 
         // Insert the image path into the presentation
-        insertImageIntoPresentation(imagePath);
+        insertImageIntoPresentation(capturedImage);
 
     } catch (error) {
         console.error('Error capturing image:', error);
