@@ -46,7 +46,7 @@ def close_connection(exception):
 def hello():
     return "Hello World!"
 
-
+# retrieves statistics from database, totals number of attentive heads per slide
 @app.route("/stats", methods=['GET'])
 def get_statistics():
     cur = get_db().cursor()
@@ -166,7 +166,6 @@ def upload():
     num_faces = len(face_poses)
     num_distracted = len(list(filter(lambda p: abs(p[1]) > 15, face_poses)))
 
-    # error message points here when running Flask server + requesting to view stats
     write_to_db(uuid, slide, timestamp, num_faces, num_distracted)
 
     return {"num_faces": num_faces, "num_distracted": num_distracted}
@@ -179,7 +178,6 @@ def write_to_db(uuid, slide, timestamp, num_faces, num_distracted):
     create_statement = f"CREATE TABLE IF NOT EXISTS {uuid} (slide INTEGER, timestamp TEXT, num_faces INTEGER, num_distracted INTEGER)"
     insert_statement = f"INSERT INTO {uuid} VALUES (?, ?, ?, ?) ON CONFLICT (slide, timestamp) DO UPDATE SET num_faces=excluded.num_faces, num_distracted=excluded.num_distracted"
 
-    # error message points here when running Flask server + requesting to view stats
     cur.execute(create_statement)
     cur.execute(insert_statement, (slide, timestamp, num_faces, num_distracted))
 
