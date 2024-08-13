@@ -1,7 +1,7 @@
 ## SheHacks: Presen-ttention
 
 <img width="500" height = "380" alt="maze1" src="https://github.com/user-attachments/assets/4e66498a-c641-4f3a-917a-6a41f2d76432">
-<img width="410" height = "380" alt="maze1" src="https://github.com/user-attachments/assets/fbfc0b8d-7bb2-40c0-8958-4f86e34e4185">
+<img width="450" height = "380" alt="maze1" src="https://github.com/user-attachments/assets/fbfc0b8d-7bb2-40c0-8958-4f86e34e4185">
 
 ### Inspiration 💫
 Since Covid, user monitoring has been used for more and more of our lives. Monitoring software like Zoom or Respondus Lockdown watches a user's every move to see if their eyes are on the screen, and if not flags them as not paying attention or cheating on an exam. But what if it's not the user's fault? What if the lecture is just really, really boring? We wanted to find an application of this technology that instead of punishing distracted students would help give feedback to presenters on how to make more engaging presentations.
