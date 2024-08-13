@@ -1,6 +1,6 @@
 ## SheHacks: Presen-ttention
 
-<img width="520" height = "380" alt="maze1" src="https://github.com/user-attachments/assets/4e66498a-c641-4f3a-917a-6a41f2d76432">
+<img width="510" height = "380" alt="maze1" src="https://github.com/user-attachments/assets/4e66498a-c641-4f3a-917a-6a41f2d76432">
 <img width="500" height = "380" alt="maze1" src="https://github.com/user-attachments/assets/fbfc0b8d-7bb2-40c0-8958-4f86e34e4185">
 
 ### Inspiration 💫
