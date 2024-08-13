@@ -39,3 +39,5 @@ pip install flask opencv-python headpose
 ### What's next for Presentention 🔮
 One of the biggest applications of this pose detection model is in the automotive industry, specifically related to driver safety. Such detection software can play a crucial role in detecting whether a driver is distracted or not, prompting the driver to shift their focus back onto the road. Such a feature can play a key role in avoiding and mitigating potential hazardous situations on the road.
 
+Devpost: https://devpost.com/software/presentention
+
