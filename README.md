@@ -29,7 +29,7 @@ pip install flask opencv-python headpose
 * Successful Integration of Computer Vision with PowerPoint
 * Addressing Incompatibility Challenges
 
-###What We Learned 📝
+### What We Learned 📝
 * End-to-End Workflow Understanding: working on an add-in that integrates with Microsoft PowerPoint using JavaScript and communicates with a Flask server running OpenCV poses challenges related to cross-platform compatibility. Our team learned how to navigate issues related to permissions, security, and compatibility between the Office API and webcam access on different platforms. This involved understanding and addressing differences in how permissions are handled on various operating systems.
 
 * Microsoft Office Add-In Development: when integrating the frontend (PowerPoint add-in) and backend (Flask server with OpenCV), our team gained a better understanding into how data flows between different components, how the frontend interacts with the backend, and the importance of seamless communication between different parts of the system.
